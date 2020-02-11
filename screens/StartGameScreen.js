@@ -1,27 +1,26 @@
 import React from 'react';
 import { StyleSheet, View, Text, TextInput, Button } from 'react-native';
-
+import Card from '../components/Card'
 
 const StartGameScreen = props => {
 
     return (
         <View style={styles.screen}>
             <Text style={styles.title}>Start a New Game!</Text>
-            <View style={styles.inputContainer}>
+            <Card style={styles.inputContainer}>
                 <Text>Select a Number</Text>
                 <TextInput />
-                <View style={styles.buttonStyle}>
-                    <Button title='Confirm' onPress={()=> {}}/>
-                    <Button title='Reset' onPress={()=> {}}/>
+                <View style={styles.buttonContainer}>
+                    <View style={styles.button} >
+                        <Button title='Confirm' onPress={()=> {}}/>
+                    </View>
+                    <View style={styles.button} >
+                        <Button title='Reset' onPress={()=> {}} color='green'/>
+                    </View>
                 </View>
-            </View>
+            </Card>
         </View>
     )
-
-
-
-
-
 }
 
 const styles = StyleSheet.create({
@@ -30,13 +29,13 @@ const styles = StyleSheet.create({
     padding: 10,
     alignItems: 'center',
   },
-  buttonStyle: {
+  buttonContainer: {
     paddingHorizontal: 15,
     flexDirection: 'row',
-    width: '100%',            // width according to parent
+    width: '80%',            // width according to parent
     justifyContent: 'space-between'
   },
-  inputContainer: {
+  inputContainer: { 
     width: 300,
     maxWidth: '80%',
     alignItems: 'center'
@@ -44,6 +43,9 @@ const styles = StyleSheet.create({
   title: {
       fontSize: 20,
       marginVertical: 10
+  },
+  button: {
+      width: 80
   }
 });
 
