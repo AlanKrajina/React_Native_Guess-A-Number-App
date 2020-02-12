@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, Alert, Button, TouchableWithoutFeedback, Keyboa
 import Card from '../components/Card'
 import Colors from '../constants/colors'
 import Input from '../components/Input'
+import NumberContainer from '../components/NumberContainer'
 
 const StartGameScreen = props => {
 
@@ -31,12 +32,18 @@ const StartGameScreen = props => {
         setConfirmed(true);  // changes confirmed state
         setSelectedNumber(parseInt(chosenNumber))
         setEnteredvalue('');
+        Keyboard.dismiss();
     }
 
     let confirmedOutput;   // number for checking 
 
     if (confirmed){   // if number OK via confirmValue(), confirmed === true
-    confirmedOutput= <Text>Chosen Number: {selectedNumber}</Text> // this will be outputed to screen
+    confirmedOutput = 
+    <Card style={styles.summaryContainer}>
+        <Text>You selected</Text> 
+        <NumberContainer>{selectedNumber}</NumberContainer>
+        <Button title='Start Game'/>
+    </Card>
     }
 
 
@@ -94,6 +101,10 @@ const styles = StyleSheet.create({
   },
   txt: {
     fontFamily: 'monospace'
+  },
+  summaryContainer: {
+      marginTop: 20,
+      alignItems: 'center'
   }
 });
 
