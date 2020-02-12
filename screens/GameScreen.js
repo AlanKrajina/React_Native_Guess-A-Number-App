@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react'; // useEffect allows to run logic after render cycle
 import { View, Text, StyleSheet, Button, Alert } from 'react-native';
 import NumberContainer from '../components/NumberContainer'
 import Card from '../components/Card'
@@ -18,9 +18,19 @@ const GameScreen = props => {
 
     const [currentGuess, setCurrentGuess] = useState(generateRandomBetween(1,100,props.userChoice));
 
+    const [rounds, setRounds] = useState(0);
     const currentLow = useRef(1);
     const currentHigh = useRef(100);
 
+    // props destructuring:
+    const { userChoice, onGameOver} = props;
+
+    useEffect(()=> {         // runs after every render cycle, when it finishes checking lower and greater
+        if (currentGuess === userChoice){ // whenever this values changes if statement will re-run
+            onGameOver(rounds)
+        }
+    }, [currentGuess, userChoice, onGameOver]); // second argument is an array of dependencies, any value outside useEffect func
+                          // if value do not change after render cycle then it wont re run 
     const nextGuessHandler = direction => {
         if ((direction === 'lower' && currentGuess < props.userChoice) || (direction === 'greater' && currentGuess > props.userChoice)){
             Alert.alert('Hey hey not true!', 'You know this is wrong :)',
@@ -34,6 +44,7 @@ const GameScreen = props => {
         }
         const nextNumber = generateRandomBetween(currentLow.current, currentHigh.current, currentGuess);
         setCurrentGuess(nextNumber);
+        setRounds(curRounds => curRounds + 1) // increments rounds state
     };
 
     // lower and greater is mine choice
