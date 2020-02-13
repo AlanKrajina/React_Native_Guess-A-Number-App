@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, ImageBackground } from 'react-native';
 import Header from './components/Header';
 import StartGameScreen from './screens/StartGameScreen';
 import GameScreen from './screens/GameScreen';
@@ -19,7 +19,7 @@ export default function App() {
   const [userNumber, setUserNumber] = useState();
   const [guessRounds, setGuessRounds] = useState(0) // if 0 game didnt start yet
 
-
+///////// CUSTOM STYLE /////////
   const [dataLoaded, setDataLoaded] = useState(false); // for font
 
   if (!dataLoaded){ // loading component, takes startAsync
@@ -33,6 +33,7 @@ export default function App() {
 
 // added -> fontFamily: 'open-sans-bold' to <StartGameScreen>
 // installed -> expo install expo-font
+////////////////////////
 
   const configureNewgameHandler = () => {  // runs <StartGameScreen/>
     setGuessRounds(0); // else if statement not meet (guessRounds > 0)
@@ -57,10 +58,13 @@ export default function App() {
   }
 
   return (
+    <ImageBackground  source={require('./assets/native.png')} style={{width: '100%', height: '100%'}}>
     <View style={styles.screen}>
       <Header title={'Guess A Number'}/>
       {content}
     </View>
+    </ImageBackground>        
+
   );
 }
 

@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, TextInput, Button } from 'react-native';
-
+import { StyleSheet, View } from 'react-native';
 
 const Card = props => {
 
@@ -9,11 +8,6 @@ const Card = props => {
             {props.children}
         </View>
     )
-
-
-
-
-
 }
 
 const styles = StyleSheet.create({
@@ -38,11 +32,14 @@ const styles = StyleSheet.create({
     elevation: 10,              // default shadow
     backgroundColor: 'white',
     padding: 20,
-    borderRadius: 10
+    borderRadius: 10,
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+
   },
   title: {
       fontSize: 20,
-      marginVertical: 10
+      marginVertical: 10,
+      
   }
 });
 

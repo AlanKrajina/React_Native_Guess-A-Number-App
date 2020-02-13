@@ -33,8 +33,8 @@ const GameScreen = props => {
                           // if value do not change after render cycle then it wont re run 
     const nextGuessHandler = direction => {
         if ((direction === 'lower' && currentGuess < props.userChoice) || (direction === 'greater' && currentGuess > props.userChoice)){
-            Alert.alert('Hey hey not true!', 'You know this is wrong :)',
-            [{text: 'Sorry', style: 'cancel'}]);
+            Alert.alert('Wrong Hint!', 'You know this is wrong :)',
+            [{text: 'Try Again', style: 'cancel'}]);
             return;
         } 
         if (direction === 'lower'){
@@ -52,7 +52,7 @@ const GameScreen = props => {
 
     return (
         <View style={styles.screen}>
-            <Text>Opponent's Guess</Text>
+            <Text style={{fontFamily: 'monospace',color: '#F5FFFA'}}>Opponent's Guess</Text>
             <NumberContainer>{currentGuess}</NumberContainer>
             <Card style={styles.buttonContainer}>
                 <Button title= 'LOWER' onPress={nextGuessHandler.bind(this, 'lower')}/>
@@ -73,7 +73,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         marginTop: 20,
         width: 300,
-        maxWidth: '80%'
+        maxWidth: '80%',
+        backgroundColor: 'rgba(0, 0, 0, 0.4)'
     }
 })
 

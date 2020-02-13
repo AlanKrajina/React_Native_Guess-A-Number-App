@@ -40,7 +40,7 @@ const StartGameScreen = props => {
     if (confirmed){   // if number OK via confirmValue(), confirmed === true
     confirmedOutput = 
     <Card style={styles.summaryContainer}>
-        <Text>You selected</Text> 
+        <Text style={{fontFamily: 'monospace',color: '#F5FFFA', }}>You selected</Text> 
         <NumberContainer>{selectedNumber}</NumberContainer>
         <Button title='Start Game' onPress={()=> props.onStartGame(selectedNumber)}/>
     </Card>
@@ -53,6 +53,8 @@ const StartGameScreen = props => {
             Keyboard.dismiss() // on empty space press keyboard removed
         }}>
         <View style={styles.screen}>
+            <Text style={styles.subTitle,{fontFamily: 'monospace'}}>Game Info</Text>
+            <Text style={styles.subTitle}>Player selects a number between 1-99. App tries to guess what number Player selected while Player gives hints if the number is Lower or Greater.</Text>
             <Text style={styles.title}>Start a New Game!</Text>
             <Card style={styles.inputContainer}>
                 <Text style={styles.txt}>Select a Number</Text>
@@ -79,7 +81,7 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,          // takes all space below Header
     padding: 10,
-    alignItems: 'center',
+    alignItems: 'center'
   },
   buttonContainer: {
     paddingHorizontal: 15,
@@ -90,22 +92,34 @@ const styles = StyleSheet.create({
   inputContainer: { 
     width: 300,
     maxWidth: '80%',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+
   },
   title: {
-      fontSize: 20,
+      fontSize: 25,
       marginVertical: 10,
-      fontFamily: 'open-sans-bold'
+      fontFamily: 'Roboto',  // check custom fonts
+      color: '#F5FFFA', 
+      fontWeight: 'bold'
+  },
+  subTitle: {
+    fontSize: 10,
+    marginVertical: 10,
+    fontFamily: 'Roboto',  // check custom fonts
+    textAlign: 'center',
+    color: '#F5FFFA',
   },
   button: {
       width: 80
   },
   txt: {
-    fontFamily: 'monospace'
+    fontFamily: 'monospace',
+    color: '#F5FFFA',
   },
   summaryContainer: {
       marginTop: 20,
-      alignItems: 'center'
+      alignItems: 'center',
   }
 });
 

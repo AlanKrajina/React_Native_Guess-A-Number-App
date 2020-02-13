@@ -23,6 +23,7 @@ textStyle: {
   borderRadius: 5,
   margin: 10,
   textAlign: 'center',
+  backgroundColor: '#87CEFA',
 }
 });
 
