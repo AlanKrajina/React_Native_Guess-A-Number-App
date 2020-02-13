@@ -4,13 +4,35 @@ import Header from './components/Header';
 import StartGameScreen from './screens/StartGameScreen';
 import GameScreen from './screens/GameScreen';
 import GameOverScreen from './screens/GameOverScreen';
+import * as Font from 'expo-font'; 
+import { AppLoading } from 'expo'; // prolongs screen loading until something is done (fetchedFonts)
+                                   // used to load fonts 
 
+const fetchFonts = () => { // returns Promise
+  Font.loadAsync({    // passed in object to pick fonts to load
+  'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
+  'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf')
+})}             // <AppLoading> will use loading to fetch fonts
 
 export default function App() {
 
   const [userNumber, setUserNumber] = useState();
-
   const [guessRounds, setGuessRounds] = useState(0) // if 0 game didnt start yet
+
+
+  const [dataLoaded, setDataLoaded] = useState(false); // for font
+
+  if (!dataLoaded){ // loading component, takes startAsync
+    return ( 
+    <AppLoading  
+          startAsync={fetchFonts} 
+          onFinish={()=> setDataLoaded(true)}
+          onError={(err)=>console.log(err)}
+          />
+    )} // onFinish will be executed when startAsync is done(promise fullfiled)
+
+// added -> fontFamily: 'open-sans-bold' to <StartGameScreen>
+// installed -> expo install expo-font
 
   const configureNewgameHandler = () => {  // runs <StartGameScreen/>
     setGuessRounds(0); // else if statement not meet (guessRounds > 0)
