@@ -33,7 +33,6 @@ export default function App() {
 
 // added -> fontFamily: 'open-sans-bold' to <StartGameScreen>
 // installed -> expo install expo-font
-////////////////////////
 
   const configureNewgameHandler = () => {  // runs <StartGameScreen/>
     setGuessRounds(0); // else if statement not meet (guessRounds > 0)
