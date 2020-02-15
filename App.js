@@ -48,8 +48,17 @@ export default function App() {
     setGuessRounds(numOfRounds);
   }
 
+// first component to show:
+// after the button in this component is pressed and userNumber SET, then <Card> components shows to start game onPress
+// <Card> gets props sent (from here) onStartGame={configureNewgameHandler} 
+// that setUserNumber(null) inside configureNewgameHandler to one selected (<Card>(onPress={()=> props.onStartGame(selectedNumber))
+// content then changes value
   let content = <StartGameScreen onStartGame={startGameHandler}/>;
 
+// changed value determines which component from these two will be show now
+// since from <Card> userNumber and guessRounds have value then the game starts <GameScreen>
+// <GameScreen> has the logic for gameplay
+// else it just shows <GameOverScreen> with game info and onPress newGame function
   if (userNumber && guessRounds <= 0){ // component switcher 
     content = <GameScreen userChoice={userNumber} onGameOver={gameOverHandler}/> 
   } else if (guessRounds > 0){

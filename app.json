@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Blank Template",
+    "name": "Guess A Number App",
     "slug": "react-native-guess-a-number-app",
     "privacy": "public",
     "sdkVersion": "36.0.0",
